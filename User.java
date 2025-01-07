@@ -52,6 +52,10 @@
             if (follows[i].equals(name)) {
                 return true;
             }
+
+            if (follows[i].toLowerCase().equals(name)) {
+                return true;
+            }
         }
         return false;
     }

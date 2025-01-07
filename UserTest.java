@@ -6,8 +6,8 @@ public class UserTest {
         User alice = new User("Alice");
         alice.addFollowee("Baz");
         System.out.println(alice.follows("baz"));
-        // alice.addFollowee("Bob");
-        // alice.removeFollowee("Bob");
+        alice.addFollowee("Foo");
+        alice.addFollowee("foo");
         System.out.println(alice.getfCount());
 
         System.out.println("...To get started, creating a dummy user for testing the toString and follows methods...\n");
