@@ -49,7 +49,7 @@
                 return false;
             }
 
-            if (follows[i].equals(name)) {
+            if (follows[i].toLowerCase().equals(name)) {
                 return true;
             }
         }
@@ -91,12 +91,8 @@
 
         boolean wasRemoved = false;
         for (int i = 0; i < follows.length; i++) {
-    
-            if (follows[i] == null) {
-                return false;
-            }
 
-            if (follows[i].equals(name)) {       // we can add && !wasRemoved for clarity.
+            if (follows[i] != null && follows[i].equals(name)) {       // we can add && !wasRemoved for clarity.
                 wasRemoved = true;
             }
 

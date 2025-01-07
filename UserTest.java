@@ -3,6 +3,13 @@ public class UserTest {
     public static void main(String[] args) {
         System.out.println("...Testing the User class...\n");
 
+        User alice = new User("Alice");
+        alice.addFollowee("Baz");
+        System.out.println(alice.follows("baz"));
+        // alice.addFollowee("Bob");
+        // alice.removeFollowee("Bob");
+        System.out.println(alice.getfCount());
+
         System.out.println("...To get started, creating a dummy user for testing the toString and follows methods...\n");
         User dummy = new User("Dummy", true);
         System.out.println(dummy);
