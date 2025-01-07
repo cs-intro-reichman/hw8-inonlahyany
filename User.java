@@ -43,34 +43,94 @@
 
     /** If this user follows the given name, returns true; otherwise returns false. */
     public boolean follows(String name) {
-        //// Replace the following statement with your code
+        for (int i = 0; i < follows.length; i++) {
+
+            if (follows[i] == null) {
+                return false;
+            }
+
+            if (follows[i].equals(name)) {
+                return true;
+            }
+        }
         return false;
     }
     /** Makes this user follow the given name. If successful, returns true. 
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
     public boolean addFollowee(String name) {
-        //// Replace the following statement with your code
-        return false;
+
+        if (fCount == maxfCount) {
+            System.out.println(this.name + " followers list is full! cannot add more followers!");
+            return false;
+        }
+
+        if (follows(name)) {
+            System.out.println(this.name + " is already following " + name + "!");
+            return false;
+        }
+
+        int i = 0;
+        while (follows[i] != null) {
+            i++;
+        }
+        follows[i] = name;
+        fCount++;
+        System.out.println("Sucessfully added " + name + " to the followers list of " + this.name);
+
+        return true;
     }
 
     /** Removes the given name from the follows list of this user. If successful, returns true.
      *  If the name is not in the list, does nothing and returns false. */
     public boolean removeFollowee(String name) {
-        //// Replace the following statement with your code
-        return false;
+
+        boolean wasRemoved = false;
+        for (int i = 0; i < follows.length; i++) {
+    
+            if (follows[i] == null) {
+                return false;
+            }
+
+            if (follows[i].equals(name)) {       // we can add && !wasRemoved for clarity.
+                wasRemoved = true;
+            }
+
+            if (wasRemoved && i < follows.length - 1) {
+                follows[i] = follows[i + 1];
+            }
+        }        
+
+        if (wasRemoved) {
+            follows[follows.length - 1] = null;
+            System.out.println("Succesfully removed " + name + " from " + this.name + " follower's list!");
+            fCount--;
+        }
+        
+        return wasRemoved;
     }
 
     /** Counts the number of users that both this user and the other user follow.
     /*  Notice: This is the size of the intersection of the two follows lists. */
     public int countMutual(User other) {
-         //// Replace the following statement with your code
-        return 0;
+        int counter = 0;
+        for (int i = 0; i < maxfCount; i++) {
+
+            if (other.follows(follows[i])) {    // null check is performed in "follows" method
+                counter++;
+            }
+        }
+
+        return counter;
     }
 
-    /** Checks is this user is a friend of the other user.
+    /** Checks if this user is a friend of the other user.
      *  (if two users follow each other, they are said to be "friends.") */
     public boolean isFriendOf(User other) {
-        //// Replace the following statement with your code
+
+        if (follows(other.name) && other.follows(name)) {
+            return true;
+        }
+
         return false;
     }
     /** Returns this user's name, and the names that s/he follows. */
