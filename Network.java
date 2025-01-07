@@ -89,7 +89,7 @@ public class Network {
         int currentRecommendedCount = 0;
 
         for (int i = 0; i < userCount; i++) {
-            if (users[i].countMutual(getUser(name)) >= currentRecommendedCount && !users[i].getName().equals(name)) {           // we iterate as long as i < userCount, so no need for null check
+            if (users[i].countMutual(getUser(name)) > currentRecommendedCount && !users[i].getName().equals(name)) {           // we iterate as long as i < userCount, so no need for null check
                 mostRecommendedUserToFollow = users[i];
                 currentRecommendedCount = users[i].countMutual(getUser(name));
             }
@@ -112,6 +112,10 @@ public class Network {
             }
         }
 
+        if (mostPopUser == null) {
+            return null;
+        }
+
         return mostPopUser.getName();
     }
 
@@ -129,13 +133,13 @@ public class Network {
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
-        String ans = "";
+        String ans = "Network:\n";
         for (int i = 0; i < users.length; i++) {
             if (users[i] == null) {
-                return ans;
+                break;                              // so we can finish building the string
             }
             ans += users[i].toString() + "\n";
         }
-        return ans;
+        return ans.substring(0, ans.length() - 1);
     }
 }
