@@ -49,7 +49,7 @@
                 return false;
             }
 
-            if (follows[i].equals(name.toLowerCase())) {
+            if (follows[i].equals(name)) {
                 return true;
             }
         }
